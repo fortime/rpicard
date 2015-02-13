@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+rpicard/__init__.py
+rpicard.egg-info/PKG-INFO
+rpicard.egg-info/SOURCES.txt
+rpicard.egg-info/dependency_links.txt
+rpicard.egg-info/entry_points.txt
+rpicard.egg-info/top_level.txt
+rpicard.egg-info/zip-safe

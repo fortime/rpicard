@@ -1,0 +1,6 @@
+# coding: utf-8
+
+UNKNOWN_ERROR = '-1'
+CONFIG_NOT_FOUND = '-2'
+RPC_UNKNOWN_RETURN = '-3'
+SYSTEM_ERROR = '-4'

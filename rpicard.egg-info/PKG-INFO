@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: rpicard
+Version: 0.1dev-r0
+Summary: A daemon with a web interface to control a raspberry pi car
+Home-page: To be xxx
+Author: fortime
+Author-email: palfortime@gmail.com
+License: MIT
+Description: To be described.
+Keywords: RaspberryPi car
+Platform: UNKNOWN
