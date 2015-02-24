@@ -11,17 +11,18 @@ class Wheel(object):
     pin is in GPIO.BOARD mode  
     """
 
-    def __init__(self, forward_pin, backward_pin):
+    def __init__(self, pins):
         """
         init pins for forward and backward
 
-        :forward_pin: wheel will roll forward, when output of the pin is high\
-        and of the backward_pin is low
-        :backward_pin: wheel will roll backward, when output of the pin is high\
+        :pins: pins to control the car.\
+                forward_pin: wheel will roll forward, when output of the pin is high\
+        and of the backward_pin is low\
+                backward_pin: wheel will roll backward, when output of the pin is high\
         and of the forward_pin is low
         """
-        self._forward = [forward_pin, GPIO.LOW, GPIO.HIGH]
-        self._backward = [backward_pin, GPIO.LOW, GPIO.HIGH]
+        self._forward = [pins['forward_pin'], GPIO.LOW, GPIO.HIGH]
+        self._backward = [pins['backward_pin'], GPIO.LOW, GPIO.HIGH]
 
     def roll_forward(self):
         """

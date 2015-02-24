@@ -22,7 +22,7 @@ class Director(object):
             raise RpiCarDExp(errorcode.CONFIG_NOT_FOUND,
                     '%s wheel pin config not found, forward: %s, backward: %s'
                         % (key, str(forward_pin), str(backward_pin)))
-        return (forward_pin, backward_pin)
+        return {'forward_pin': forward_pin, 'backward_pin': backward_pin}
 
     def init(self):
         """
@@ -183,26 +183,26 @@ class Director(object):
         Make the car turn left when it goes backward. level:
         1: stop back left wheel
         2: stop both left wheels, front and back
-        3: make back left wheel roll backward
-        4: make bot left wheels roll backward, front and back
+        3: make back left wheel roll forward
+        4: make bot left wheels roll forward, front and back
 
         :level: how soon it turn
         """
         pins = []
-        pins.extend(self._front_right.roll_forward())
-        pins.extend(self._back_right.roll_forward())
+        pins.extend(self._front_right.roll_backward())
+        pins.extend(self._back_right.roll_backward())
         if (level == 1):
             pins.extend(self._back_left.stop())
-            pins.extend(self._front_left.roll_forward())
+            pins.extend(self._front_left.roll_backward())
         elif (level == 2):
             pins.extend(self._back_left.stop())
             pins.extend(self._front_left.stop())
         elif (level == 3):
-            pins.extend(self._back_left.roll_backward())
+            pins.extend(self._back_left.roll_forward())
             pins.extend(self._front_left.stop())
         elif (level == 4):
-            pins.extend(self._back_left.roll_backward())
-            pins.extend(self._front_left.roll_backward())
+            pins.extend(self._back_left.roll_forward())
+            pins.extend(self._front_left.roll_forward())
         else:
             raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
 
@@ -213,26 +213,26 @@ class Director(object):
         Make the car turn right when it goes backward. level:
         1: stop back right wheel
         2: stop both right wheels, front and back
-        3: make back right wheel roll backward
-        4: make bot right wheels roll backward, front and back
+        3: make back right wheel roll forward
+        4: make bot right wheels roll forward, front and back
 
         :level: how soon it turn
         """
         pins = []
-        pins.extend(self._front_left.roll_forward())
-        pins.extend(self._back_left.roll_forward())
+        pins.extend(self._front_left.roll_backward())
+        pins.extend(self._back_left.roll_backward())
         if (level == 1):
             pins.extend(self._back_right.stop())
-            pins.extend(self._front_right.roll_forward())
+            pins.extend(self._front_right.roll_backward())
         elif (level == 2):
             pins.extend(self._back_right.stop())
             pins.extend(self._front_right.stop())
         elif (level == 3):
-            pins.extend(self._back_right.roll_backward())
+            pins.extend(self._back_right.roll_forward())
             pins.extend(self._front_right.stop())
         elif (level == 4):
-            pins.extend(self._back_right.roll_backward())
-            pins.extend(self._front_right.roll_backward())
+            pins.extend(self._back_right.roll_forward())
+            pins.extend(self._front_right.roll_forward())
         else:
             raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
 

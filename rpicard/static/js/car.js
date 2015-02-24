@@ -197,6 +197,7 @@ Car.prototype = {
     },
 
     flush: function() {
+        var tmpCar = this
         if (this._xmlHttp.onreadystatechange == null) {
             this._xmlHttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
@@ -206,7 +207,7 @@ Car.prototype = {
                         // 200 = OK
                         var retObj = JSON.parse(this.responseText);
                         if (retObj.retcode == "0") {
-                            msg = "md: " + this._md + " rl: " + this._rl;
+                            msg = "md: " + tmpCar._md + " rl: " + tmpCar._rl;
                             error = false;
                         }
                         else {

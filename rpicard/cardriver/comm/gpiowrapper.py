@@ -38,7 +38,7 @@ class GpioWrapper(object):
             GpioWrapper._in_pins.remove(pin_no)
         # set out mode
         if pin_no not in GpioWrapper._out_pins:
-            GPIO.setmode(pin_no, GPIO.OUT)
+            GPIO.setup(pin_no, GPIO.OUT)
             GpioWrapper._out_pins.append(pin_no)
         if level != last_level:
             GPIO.output(pin_no, level)
