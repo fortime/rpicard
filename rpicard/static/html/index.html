@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rpi Car</title>
+        <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
+        <link rel="stylesheet" href="/resource?t=3&path=style" type="text/css" charset="utf-8">
+        <script src="/resource?t=2&path=car"></script>
+    </head>
+    <body onload="init(4)">
+        <div class="h_container">
+            <div id="rotation_panel" class="rotation panel">
+                <div id="rotation_container" class="container">
+                    <div id="outer_cycle" class="outer_cycle container">
+                        <div id="number_cycle_template" class="outer_cycle container">
+                            <div name="number_template" class="number h_container">
+                            </div>
+                        </div>
+                        <div id="inner_cycle" class="inner_cycle container">
+                            <div id="selector" class="selector h_container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="msg_panel" class="msg panel">
+                <div id="msg_container" class="container">
+                    <label for="Msg">Msg</label>
+                    <div id="msg_content" class="msg_content">
+                    </div>
+                </div>
+            </div>
+            <div id="moving_panel" class="moving panel">
+                <div id="moving_container" class="container">
+                    <div id="forward_btn" class="button">
+                        <img class="unclicked_button" src="/resource?t=4&path=forward" />
+                    </div>            
+                    <div id="backward_btn" class="button">
+                        <img class="unclicked_button" src="/resource?t=4&path=backward" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

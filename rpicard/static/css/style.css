@@ -1,0 +1,76 @@
+body {
+    width: 40em;
+    height: 12em;
+}
+
+.rotation {
+    position:relative;
+    width: 12em;
+    height: 12em;
+}
+
+.msg {
+    position:relative;
+    width: 14em;
+    height: 10em;
+    text-align: center;
+}
+
+.moving {
+    position:relative;
+    width: 6em;
+    height: 10em;
+}
+
+.panel {
+    float: left;
+}
+
+.container {
+    position: absolute;
+    left: 0em;
+    top: 0em;
+    right: 0em;
+    bottom: 0em;
+    margin: auto;
+}
+
+.h_container {
+    position: absolute;
+    left: 0em;
+    top: 0em;
+    right: 0em;
+    bottom: 0em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0em;
+}
+
+.outer_cycle {
+    width: 10em;
+    height: 10em;
+    border-radius: 10em;
+    background-color: grey;
+}
+
+.inner_cycle {
+    width: 7em;
+    height: 7em;
+    border-radius: 7em;
+    background-color: silver;
+    box-shadow: #232425 0 0 0.5em;
+}
+
+.selector {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 1.5em;
+    border: 0.3em solid silver;
+    background-color: rgba(210, 105, 30, 0.8);
+}
+
+.number {
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+}
