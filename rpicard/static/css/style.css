@@ -1,5 +1,5 @@
 body {
-    width: 40em;
+    width: 32em;
     height: 12em;
 }
 
@@ -73,4 +73,13 @@ body {
     width: 1.2em;
     height: 1.2em;
     text-align: center;
+}
+
+.button {
+    font-size: 5em;
+    font-style:normal;
+}
+
+.error {
+    color: #F55;
 }

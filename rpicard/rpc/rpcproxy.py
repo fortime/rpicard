@@ -113,13 +113,13 @@ class RpcProxy(object):
     # rpc config
     _rpc_caller_config = None
 
-    def __init__(self, obj):
+    def __init__(self, clazz):
         """
-        Set the obj.
+        Set the class to be proxied.
 
-        :obj: the obj to be proxied
+        :clazz: the class to be proxied
         """
-        self._obj = obj
+        self._clazz = clazz
         
     def __getattr__(self, name):
         """
@@ -137,7 +137,7 @@ class RpcProxy(object):
             RpcProxy._rpc_caller_config = Config()
             RpcProxy._rpc_caller_config.read_config(file_path)
 
-        metadata = (self._obj.__module__, self._obj.__class__.__name__, name)
+        metadata = (self._clazz.__module__, self._clazz.__name__, name)
         key = '.'.join(metadata)
         caller = RpcProxy._rpc_callers.get(key)
         if caller is None:

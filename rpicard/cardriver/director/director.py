@@ -61,7 +61,7 @@ class Director(object):
         else:
             pins.extend(self._front_left.roll_forward())
 
-        # front left
+        # front right
         if front_right == 0:
             pins.extend(self._front_right.stop())
         elif front_right == 2:
@@ -69,7 +69,7 @@ class Director(object):
         else:
             pins.extend(self._front_right.roll_forward())
 
-        # front left
+        # back left
         if back_left == 0:
             pins.extend(self._back_left.stop())
         elif back_left == 2:
@@ -77,7 +77,7 @@ class Director(object):
         else:
             pins.extend(self._back_left.roll_forward())
 
-        # front left
+        # back right
         if back_right == 0:
             pins.extend(self._back_right.stop())
         elif back_right == 2:
@@ -93,7 +93,7 @@ class Director(object):
         pins.extend(self._front_left.roll_forward())
         pins.extend(self._front_right.roll_forward())
         pins.extend(self._back_left.roll_forward())
-        pins.extend(self._back_left.roll_forward())
+        pins.extend(self._back_right.roll_forward())
         gpio_wrapper.output(pins)
 
     def go_backward(self):
@@ -104,7 +104,18 @@ class Director(object):
         pins.extend(self._front_left.roll_backward())
         pins.extend(self._front_right.roll_backward())
         pins.extend(self._back_left.roll_backward())
-        pins.extend(self._back_left.roll_backward())
+        pins.extend(self._back_right.roll_backward())
+        gpio_wrapper.output(pins)
+
+    def stop(self):
+        """
+        Make the car stop.
+        """
+        pins = []
+        pins.extend(self._front_left.stop())
+        pins.extend(self._front_right.stop())
+        pins.extend(self._back_left.stop())
+        pins.extend(self._back_right.stop())
         gpio_wrapper.output(pins)
 
     def turn_left(self, level):
@@ -117,7 +128,25 @@ class Director(object):
 
         :level: how soon it turn
         """
-        pass
+        pins = []
+        pins.extend(self._front_right.roll_forward())
+        pins.extend(self._back_right.roll_forward())
+        if (level == 1):
+            pins.extend(self._front_left.stop())
+            pins.extend(self._back_left.roll_forward())
+        elif (level == 2):
+            pins.extend(self._front_left.stop())
+            pins.extend(self._back_left.stop())
+        elif (level == 3):
+            pins.extend(self._front_left.roll_backward())
+            pins.extend(self._back_left.stop())
+        elif (level == 4):
+            pins.extend(self._front_left.roll_backward())
+            pins.extend(self._back_left.roll_backward())
+        else:
+            raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
+
+        gpio_wrapper.output(pins)
 
     def turn_right(self, level):
         """
@@ -129,6 +158,84 @@ class Director(object):
 
         :level: how soon it turn
         """
-        pass
+        pins = []
+        pins.extend(self._front_left.roll_forward())
+        pins.extend(self._back_left.roll_forward())
+        if (level == 1):
+            pins.extend(self._front_right.stop())
+            pins.extend(self._back_right.roll_forward())
+        elif (level == 2):
+            pins.extend(self._front_right.stop())
+            pins.extend(self._back_right.stop())
+        elif (level == 3):
+            pins.extend(self._front_right.roll_backward())
+            pins.extend(self._back_right.stop())
+        elif (level == 4):
+            pins.extend(self._front_right.roll_backward())
+            pins.extend(self._back_right.roll_backward())
+        else:
+            raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
+
+        gpio_wrapper.output(pins)
+
+    def turn_left_in_reverse(self, level):
+        """
+        Make the car turn left when it goes backward. level:
+        1: stop back left wheel
+        2: stop both left wheels, front and back
+        3: make back left wheel roll backward
+        4: make bot left wheels roll backward, front and back
+
+        :level: how soon it turn
+        """
+        pins = []
+        pins.extend(self._front_right.roll_forward())
+        pins.extend(self._back_right.roll_forward())
+        if (level == 1):
+            pins.extend(self._back_left.stop())
+            pins.extend(self._front_left.roll_forward())
+        elif (level == 2):
+            pins.extend(self._back_left.stop())
+            pins.extend(self._front_left.stop())
+        elif (level == 3):
+            pins.extend(self._back_left.roll_backward())
+            pins.extend(self._front_left.stop())
+        elif (level == 4):
+            pins.extend(self._back_left.roll_backward())
+            pins.extend(self._front_left.roll_backward())
+        else:
+            raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
+
+        gpio_wrapper.output(pins)
+
+    def turn_right_in_reverse(self, level):
+        """
+        Make the car turn right when it goes backward. level:
+        1: stop back right wheel
+        2: stop both right wheels, front and back
+        3: make back right wheel roll backward
+        4: make bot right wheels roll backward, front and back
+
+        :level: how soon it turn
+        """
+        pins = []
+        pins.extend(self._front_left.roll_forward())
+        pins.extend(self._back_left.roll_forward())
+        if (level == 1):
+            pins.extend(self._back_right.stop())
+            pins.extend(self._front_right.roll_forward())
+        elif (level == 2):
+            pins.extend(self._back_right.stop())
+            pins.extend(self._front_right.stop())
+        elif (level == 3):
+            pins.extend(self._back_right.roll_backward())
+            pins.extend(self._front_right.stop())
+        elif (level == 4):
+            pins.extend(self._back_right.roll_backward())
+            pins.extend(self._front_right.roll_backward())
+        else:
+            raise RpiCarDExp(errorcode.PARAM_ERROR, "level should between 1 and 4.")
+
+        gpio_wrapper.output(pins)
 
 director = Director()

@@ -41,7 +41,7 @@ class Resource:
         :returns: file content
         """
         full_path = self._get_full_path('html', path)
-        web.header('Content-Type', 'text/html')
+        web.header('Content-Type', 'text/html; charset=utf8')
         return open(full_path).read()
 
     def _get_js(self, path):
@@ -52,7 +52,7 @@ class Resource:
         :returns: file content
         """
         full_path = self._get_full_path('js', path)
-        web.header('Content-Type', 'application/x-javascript')
+        web.header('Content-Type', 'application/x-javascript; charset=utf8')
         return open(full_path).read()
 
     def _get_css(self, path):
@@ -63,7 +63,18 @@ class Resource:
         :returns: file content
         """
         full_path = self._get_full_path('css', path)
-        web.header('Content-Type', 'text/css')
+        web.header('Content-Type', 'text/css; charset=utf8')
+        return open(full_path).read()
+
+    def _get_png(self, path):
+        """
+        Get the png resource.
+
+        :path: relative file path without suffix
+        :returns: file content
+        """
+        full_path = self._get_full_path('png', path)
+        web.header('Content-Type', 'image/png')
         return open(full_path).read()
 
     def GET(self):
@@ -85,6 +96,8 @@ class Resource:
                 content = self._get_js(path)
             elif t == '3':
                 content = self._get_css(path)
+            elif t == '4':
+                content = self._get_png(path)
         except RpiCarDExp as exp:
             logger.warn("Get file in '%s' of type '%s' failed, retcode: %s, retmsg: %s." % (path, t, exp.retcode(), exp.retmsg()))
         except:
