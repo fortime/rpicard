@@ -29,7 +29,7 @@ function calAngle(pointA, pointB, pointO) {
     var part1 = aox * box + aoy * boy;
     var part2 = Math.sqrt((aox * aox + aoy * aoy) * (box * box + boy * boy));
     var angleAOB = Math.acos(part1 / part2) / Math.PI * 180;
-    var msg = "A:" + pointA + " B:" + pointB + " O:" + pointO + " angle:" + Math.floor(angleAOB) + " md:" + car.getMd();
+    var msg = "A:" + pointA + " B:" + pointB + " O:" + pointO + " angle:" + Math.floor(angleAOB) + " md:" + car.getMd() + " rl:" + car.getRl();
     showMsg(msg);
 
     var otherAoy = aox * boy / box;
@@ -88,9 +88,11 @@ function initEvent() {
             var selectorStartX1 = parseInt(touchPoint.clientX);
             var selectorStartY1 = parseInt(touchPoint.clientY);
             var angle = calAngle([selectorStartX1, selectorStartY1], [selectorStartX, selectorStartY], [centerOfSelectorContainerX, centerOfSelectorContainerY]);
-            rotate(innerCycle, angle);
             var level = angle / (360 / (car.getMaxLevel() * 2 + 1));
-            car.setRl(level > 0 ? Math.floor(level): Math.ceil(level));
+            if (level - car.getRl() <= 2 && level - car.getRl() >= -2) {
+                rotate(innerCycle, angle);
+                car.setRl(level > 0 ? Math.floor(level): Math.ceil(level));
+            }
         }
         return preventEvent(event);
     }
@@ -194,6 +196,10 @@ Car.prototype = {
             this._rl = level;
             this.flush();
         }
+    },
+
+    getRl: function() {
+        return this._rl;
     },
 
     flush: function() {
