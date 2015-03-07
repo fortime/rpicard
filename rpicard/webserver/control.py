@@ -30,9 +30,9 @@ class Control(object):
         """
         param = web.input()
         if not param.has_key('rl'):
-            raise RpiCarDExp(errorcode.PARAM_NOT_EXISTS, 'rd does not exist.')
+            raise RpiCarDExp(errorcode.PARAM_NOT_EXISTS, 'rl does not exist.')
         if not param.has_key('md'):
-            raise RpiCarDExp(errorcode.PARAM_NOT_EXISTS, 'rd does not exist.')
+            raise RpiCarDExp(errorcode.PARAM_NOT_EXISTS, 'md does not exist.')
         rl, md = None, None
         try:
             rl = int(param.rl)

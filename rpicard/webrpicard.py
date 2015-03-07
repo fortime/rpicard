@@ -23,13 +23,14 @@ urls = (
 def start_server(argv):
     sys_config.read_config('etc/rpicard.conf')
     logutil.init_log()
+    web.webapi.debug = logutil.CustomWsgiLog()
     if __name__ == "__main__":
         tmp = globals().copy()  
         tmp['__name__'] = 'rpicard.webrpicard'
         app = web.application(urls, tmp)
     else:
         app = web.application(urls, globals())
-    app.run()
+    app.run(logutil.CustomWsgiLog)
 
 if __name__ == "__main__":
     start_server(sys.argv)
