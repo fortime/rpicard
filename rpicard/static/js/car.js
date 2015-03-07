@@ -8,18 +8,6 @@ function rotate(element, angle) {
     element.style.transform = "rotate(" + angle + "deg)";
 }
 
-function findPos(element) {
-    if (element) {
-        var parentPos = findPos(element.offsetParent);
-        return [
-            parentPos[0]+ element.offsetLeft,
-            parentPos[0]+ element.offsetTop
-        ];
-    } else {
-        return [0, 0];
-    }
-}
-
 function calAngle(pointA, pointB, pointO) {
     var aox = pointA[0] - pointO[0];
     var aoy = pointA[1] - pointO[1];
@@ -37,6 +25,18 @@ function calAngle(pointA, pointB, pointO) {
         angleAOB = -angleAOB; 
     }
     return angleAOB;
+}
+
+function findPos(element) {
+    if (element) {
+        var parentPos = findPos(element.offsetParent);
+        return [
+            parentPos[0]+ element.offsetLeft,
+            parentPos[1]+ element.offsetTop,
+        ];
+    } else {
+        return [0, 0];
+    }
 }
 
 function findCenterPos(element) {

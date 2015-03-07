@@ -1,29 +1,38 @@
 body {
-    width: 32em;
-    height: 12em;
+    background-color: lightgrey;
+}
+
+.whole {
+    margin-left: 8%;
+    margin-right: 8%;
 }
 
 .rotation {
-    position:relative;
     width: 12em;
-    height: 12em;
+    height: 13em;
+    background-color: lightgrey;
 }
 
 .msg {
-    position:relative;
-    width: 14em;
-    height: 10em;
+    width: 40%;
+    height: 13em;
     text-align: center;
+    background-color: lightblue;
+    z-index: -1;
 }
 
 .moving {
-    position:relative;
-    width: 6em;
-    height: 10em;
+    width: 5em;
+    height: 13em;
+    text-align: center;
+    background-color: lightgrey;
 }
 
 .panel {
     float: left;
+    position: relative;
+    top: 3em;
+    box-shadow: #232425 0.0em 0em 0.8em;
 }
 
 .container {
@@ -33,6 +42,8 @@ body {
     right: 0em;
     bottom: 0em;
     margin: auto;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .h_container {
@@ -44,6 +55,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 0em;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
 }
 
 .outer_cycle {
@@ -75,8 +89,12 @@ body {
     text-align: center;
 }
 
+.msg_content {
+    background-color: white;
+}
+
 .button {
-    font-size: 5em;
+    font-size: 4.5em;
     font-style:normal;
 }
 
